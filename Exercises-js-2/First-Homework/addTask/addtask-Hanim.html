@@ -7,6 +7,7 @@
     <title>Add Task Assignment</title>
 </head>
 <body>
+    <input type="text" id="userTask" value="put the task to do...">
     <button type="button" id="add-task-button">Click here to add task!</button>
     <ul id="task-list">
 
@@ -17,11 +18,38 @@
     document.getElementById("add-task-button").onclick = function() {addtask() };
 
     function addtask() {
-        let tasks = prompt("Please enter the task!");
+
+        let task = document.getElementById("userTask").value;
+
+
         let newLi = document.createElement("li");
-        let newContent = document.createTextNode(tasks);
-        newLi.appendChild(newContent);
-        document.getElementById("task-list").appendChild(newLi);
+        let newSpan = document.createElement("span");
+        let taskList = document.getElementById("task-list");
+
+
+        let newSpanContent=document.getElementsByTagName("ul").length;
+        newSpan=document.createTextNode(newSpanContent+' ');
+        newLi.insertBefore(newSpan, newLi.childNodes[0]); 
+        
+        let newLiContent = document.createTextNode(task);
+        newLi.appendChild(newLiContent);
+
+        taskList.insertBefore(newLi, taskList.childNodes[0]); 
+        
+        
+        //document.getElementById("task-list").appendChild(newSpan, newLi);
+
+
+
+
+        // let count=0;
+        // count++;
+        // newSpan=count;
+        //let listItem= newLi+newSpan;
+        //document.getElementById("task-list").appendChild(newSpan);
+        
+        //let taskList = document.getElementById("task-list");
+        
     }
     
     
