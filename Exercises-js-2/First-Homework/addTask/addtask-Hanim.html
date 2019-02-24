@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Add Task Assignment</title>
+</head>
+<body>
+    <button type="button" id="add-task-button">Click here to add task!</button>
+    <ul id="task-list">
+
+    </ul>
+
+    <script>
+    document.getElementById("add-task-button").onclick = function() {addtask() };
+
+    function addtask() {
+        let tasks = prompt("Please enter the task!");
+        let newLi = document.createElement("li");
+        let newContent = document.createTextNode(tasks);
+        newLi.appendChild(newContent);
+        document.getElementById("task-list").appendChild(newLi);
+    }
+    
+    
+    </script>
+</body>
+</html>
