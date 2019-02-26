@@ -23,13 +23,18 @@
         let task = document.getElementById("userTask").value;
         let newLi = document.createElement("li");
         let taskList = document.getElementById("task-list");
-        let count=nodelist = document.getElementsByTagName("li").length+1;
+        let count = document.getElementsByTagName("li").length+1;
         taskList.appendChild(newSpan);
         newSpan .innerHTML = count;
         let newLiContent = document.createTextNode(task);
         newLi.appendChild(newLiContent);
         taskList.insertBefore(newLi, taskList.childNodes[0]);
+        newLi.onclick = removeItem;
         }
+        
+    function removeItem(e) {
+        e.target.parentElement.removeChild(e.target);
+    }
     </script>
 </body>
 </html>
