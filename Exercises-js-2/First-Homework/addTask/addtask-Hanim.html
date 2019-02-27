@@ -34,16 +34,25 @@
         newLi.appendChild(newLiContent);
         taskList.insertBefore(newLi, taskList.childNodes[0]);
         
-
-        var deleteAct = document.getElementsByClassName("delete");
-        var i;
-        for (i = 0; i < deleteAct.length; i++) {
-        deleteAct[i].onclick = function() {
-        taskList.removeChild(newLi, taskList.childNodes[i]);
-            }
+        let x=0;
+        let deleteAct = document.getElementsByClassName("delete");
+        deleteAct[x].onclick =function() {
+        taskList.removeChild(newLi, taskList.childNodes[x]);
         count= document.getElementsByTagName("li").length;
-        newSpan .innerHTML = count;    
+        newSpan .innerHTML = count;
         }
+
+
+
+
+        // var i;
+        // for (i = 0; i < deleteAct.length; i++) {
+        // deleteAct[i].onclick = function() {
+        // taskList.removeChild(newLi, taskList.childNodes[i]);
+        //     }
+        // count= document.getElementsByTagName("li").length;
+        // newSpan .innerHTML = count;    
+        // }
     }
     
     </script>
