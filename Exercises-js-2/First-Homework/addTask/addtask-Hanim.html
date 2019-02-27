@@ -10,6 +10,7 @@
     <label for="userTask">Insert a task to do...</label>
     <input type="text" id="userTask" value="">
     <button type="button" id="add-task-button">Click here to add task!</button>
+    <button onclick="removeItem2()">Delete an enrty!</button>
     <ul id="task-list">
 
     </ul>
@@ -37,8 +38,16 @@
         newSpan .innerHTML = count;
         }
     }
+    function removeItem2() {
+        var liste = document.getElementById("task-list");
+  
+        if (liste.hasChildNodes()) {
+        liste.removeChild(liste.childNodes[0]);
+        count= document.getElementsByTagName("li").length;
+        newSpan .innerHTML = count;
+    }
 
-        
+    }
     
     </script>
 </body>
