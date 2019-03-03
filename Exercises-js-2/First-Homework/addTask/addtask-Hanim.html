@@ -4,15 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Add Task Assignment</title>
+    <title>My To-Do List</title>
+    
+    <link rel="favicon" type="image/png" href="https://apprecs.org/gp/images/app-icons/300/8a/io.tinbits.memorigi.jpg"/>
 </head>
 <body>
+    <div class="container">
+    <h1>My To-Do List</h1>
     <label for="userTask">Insert a task to do...</label>
     <input type="text" id="userTask" value="">
     <button type="button" id="add-task-button">Click here to add task!</button>
     <ul id="task-list">
-
+    
     </ul>
+    </div>
 
     <script>
         
@@ -23,7 +28,6 @@
         let task = document.getElementById("userTask").value;
         let newLi = document.createElement("li");
         let deleteButton=document.createElement("button");
-        newLi.appendChild(deleteButton);
         deleteButton.innerText="Delete";
         deleteButton.className="delete";
         let taskList = document.getElementById("task-list");
@@ -33,7 +37,7 @@
         let newLiContent = document.createTextNode(task);
         newLi.appendChild(newLiContent);
         taskList.insertBefore(newLi, taskList.childNodes[0]);
-        
+        newLi.appendChild(deleteButton);
         let x=0;
         let deleteAct = document.getElementsByClassName("delete");
         deleteAct[x].onclick =function() {
@@ -42,17 +46,6 @@
         newSpan .innerHTML = count;
         }
 
-
-
-
-        // var i;
-        // for (i = 0; i < deleteAct.length; i++) {
-        // deleteAct[i].onclick = function() {
-        // taskList.removeChild(newLi, taskList.childNodes[i]);
-        //     }
-        // count= document.getElementsByTagName("li").length;
-        // newSpan .innerHTML = count;    
-        // }
     }
     
     </script>
