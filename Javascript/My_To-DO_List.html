@@ -180,18 +180,19 @@
             deleteButon[c].onclick =function() {
             console.log(tasks[c]);
             myTable.deleteRow(c+1);
-            c=0;   
+            
                 } 
         /////////////////////Button Tasks///////////////////////////////////////// 
         document.getElementById("add-task-button").onclick = function() {addtask() };
         document.getElementsByClassName("edit").onclick = function() {edittask() };
+        
 
         function addtask() {
             let myTable=document.getElementById("tasklist");
             let newtask = document.getElementById("userTask").value;
             tasks.unshift(newtask);
             let tasksLength= tasks.length;
-            
+        /////////////////////Clearing input area after submitting//////////////////    
             document.getElementById("inputarea").reset();
 
             var row = myTable.insertRow(1);
