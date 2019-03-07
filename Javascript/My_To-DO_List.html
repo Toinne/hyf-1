@@ -138,91 +138,85 @@
           </table>
 
     <script>
-        //////////////////////Checking input area for entry//////////////////////////
-        document.getElementById("userTask").addEventListener("input", function() {
-                let nameInput = document.getElementById("userTask").value
-            if (nameInput != "") {
-                document.getElementById("add-task-button").disabled = false;
-        
-            } else {
-                document.getElementById("add-task-button").disabled = true;
-            }})
-        /////////////////////Default Array Task List/////////////////////////////////
-        let tasks=["Check to do list", "Pay the bills"];
-
+    //////////////////////Checking input area for entry//////////////////////////
+    document.getElementById('userTask').addEventListener('input', function() {
+        let nameInput = document.getElementById('userTask').value;
+        if (nameInput !== '') {
+            document.getElementById('add-task-button').disabled = false;
+        } else {
+            document.getElementById('add-task-button').disabled = true;
+        }
+    });
+    /////////////////////Default Array Task List/////////////////////////////////
+    let tasks=["Check to do list", "Pay the bills"];
+    /////////////////////Loading default task////////////////////////////////////
+    for (let i = 0; i < tasks.length; i++) {
+        addTodo(tasks[i]);
+    }
+    /////////////////////Button Tasks/////////////////////////////////////////
+    document.getElementById("add-task-button").onclick = function() {addtask() };
+    function addTodo(taskLabel) {
         /////////////////////Getting Table///////////////////////////////////////////
-        let myTable=document.getElementById("tasklist");
-
+        let myTable = document.getElementById('tasklist');
+        var row = myTable.insertRow(1);
+        var cell1 = row.insertCell(0);
+        let doneCheck = document.createElement('input');
+        doneCheck.type = 'checkbox';
+        cell1.appendChild(doneCheck);
+        var cell2 = row.insertCell(1);
+        cell2.innerHTML = taskLabel;
+        cell2.classList.add('label');
+        var cell3 = row.insertCell(2);
+        let deleteBtn = document.createElement('button');
+        deleteBtn.innerText = 'Delete';
+        deleteBtn.className = 'delete';
+        let editBtn = document.createElement('button');
+        editBtn.innerText = 'Edit';
+        editBtn.className = 'edit';
+        cell3.appendChild(deleteBtn);
+        cell3.appendChild(editBtn);
         
-        
-        /////////////////////Loading default task////////////////////////////////////
-        for (i = 0; i < tasks.length; i++) {
-
-            let tableCell=myTable.rows[i+1].cells;
+        /////////////////////Deleting Task for new delete buttons///////////////////
+        deleteBtn.onclick = function () {
+            deleteBtn.parentNode.parentNode.remove();
+        };
+        editBtn.onclick = function () {
+            let getRow=editBtn.parentNode.parentNode;
+            let getTr=getRow.getElementsByClassName("label").item(0);
+            let innerText=getTr.innerHTML;
+            //getTr.setAttribute("contenteditable", "true");
             
-            let doneCheck=document.createElement("input");
-            doneCheck.type="checkbox";
-            tableCell[0].appendChild(doneCheck);
-            tableCell[1].innerHTML = tasks[i];
-            let deleteBtn=document.createElement("button");
-            deleteBtn.innerText="Delete";
-            deleteBtn.className="delete";
-            let editBtn=document.createElement("button");
-            editBtn.innerText="Edit";
-            editBtn.className="edit";
-            tableCell[2].appendChild(deleteBtn);
-            tableCell[2].appendChild(editBtn);
-            
-            }
-        /////////////////////Delete Button Task////////////////////////////////////   
-            let c=0;
-            let deleteButon=document.getElementsByClassName("delete")
-            deleteButon[c].onclick =function() {
-            console.log(tasks[c]);
-            myTable.deleteRow(c+1);
-            
-                } 
-        /////////////////////Button Tasks///////////////////////////////////////// 
-        document.getElementById("add-task-button").onclick = function() {addtask() };
-        document.getElementsByClassName("edit").onclick = function() {edittask() };
-        
+            var input = document.createElement('input');
+            input.id = 'test';
+            input.value = getTr.innerHTML;
+            getTr.innerHTML="";
+            getTr.appendChild(input);
+            input.select();
+            editBtn.innerText = 'Save';
+            // editBtn.onclick = function (){
+            //     let getInput=getTr.getElementsByTagName("input").item(0);
+            //     innerText=getInput.value;
+            //     getInput.remove()
+            //     getTr.innerHTML=innerText;
+            //     editBtn.innerText = 'Edit';
+            // }
+            // add a onclick to the save button
+            // find the label by getting the parent, parent
+            // find the label by selecting saveBtn.parentNode.parentNode.childNodes[1]
+            // changing the label from an input back to text with the value of the input
+            // change the saveBtn by an edit button
+        }
+    }
+    function addtask() {
+        let newtask = document.getElementById("userTask").value;
+        tasks.unshift(newtask);
+        /////////////////////Clearing input area after submitting//////////////////
+        document.getElementById("inputarea").reset();
+        addTodo(newtask);
+        /////////////////////Disabling submit button after hitting submit//////////
+        document.getElementById("add-task-button").disabled = true;
+    }
 
-        function addtask() {
-            let myTable=document.getElementById("tasklist");
-            let newtask = document.getElementById("userTask").value;
-            tasks.unshift(newtask);
-            let tasksLength= tasks.length;
-        /////////////////////Clearing input area after submitting//////////////////    
-            document.getElementById("inputarea").reset();
-
-            var row = myTable.insertRow(1);
-            var cell1 = row.insertCell(0);
-            let doneCheck=document.createElement("input");
-            doneCheck.type="checkbox";
-            cell1.appendChild(doneCheck);
-            var cell2 = row.insertCell(1);
-            cell2.innerHTML = tasks[0];
-            var cell3 = row.insertCell(2);
-
-            let deleteBtn=document.createElement("button");
-            deleteBtn.innerText="Delete";
-            deleteBtn.className="delete";
-            let editBtn=document.createElement("button");
-            editBtn.innerText="Edit";
-            editBtn.className="edit";
-            cell3.appendChild(deleteBtn);
-            cell3.appendChild(editBtn);
-                
-        /////////////////////Deleting Task for new delete buttons///////////////////     
-            let deleteButon=document.getElementsByClassName("delete")
-            let newTr=myTable.getElementsByTagName("tr")
-            deleteButon[c].onclick =function() {
-            newTr[c+1].remove();
-                }
-        /////////////////////Disabling submit button after hitting submit////////// 
-            document.getElementById("add-task-button").disabled = true;
-            }
-         
     </script>
 </body>
 </html>
