@@ -193,13 +193,13 @@
             getTr.appendChild(input);
             input.select();
             editBtn.innerText = 'Save';
-            // editBtn.onclick = function (){
-            //     let getInput=getTr.getElementsByTagName("input").item(0);
-            //     innerText=getInput.value;
-            //     getInput.remove()
-            //     getTr.innerHTML=innerText;
-            //     editBtn.innerText = 'Edit';
-            // }
+            editBtn.onclick = function (){
+                let getInput=getTr.getElementsByTagName("input").item(0);
+                innerText=getInput.value;
+                getInput.remove()
+                getTr.innerHTML=innerText;
+                editBtn.innerText = 'Edit';
+            }
             // add a onclick to the save button
             // find the label by getting the parent, parent
             // find the label by selecting saveBtn.parentNode.parentNode.childNodes[1]
